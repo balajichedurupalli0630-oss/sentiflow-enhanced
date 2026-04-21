@@ -1,0 +1,341 @@
+/* ─────────────────────────────────────────────────────────
+   SentiFlow 3.0 — Production Overlay
+   Design: precision instrument / data terminal
+   Fixed bottom-right panel — works on every site
+───────────────────────────────────────────────────────── */
+
+#sentiflow-root {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483647;
+  font-family: -apple-system, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  pointer-events: auto;
+}
+
+#sentiflow-root * {
+  pointer-events: auto;
+}
+
+
+.sf-panel {
+  width: 272px;
+  background: #0b0b0e;
+  border: 1px solid #1c1c24;
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
+  transition: opacity 220ms cubic-bezier(0.4,0,0.2,1),
+              transform 220ms cubic-bezier(0.4,0,0.2,1);
+  pointer-events: auto;
+  box-shadow:
+    0 0 0 0.5px rgba(255,255,255,0.04),
+    0 4px 16px rgba(0,0,0,0.5),
+    0 24px 48px rgba(0,0,0,0.35);
+}
+
+.sf-panel.sf-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.sf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px 9px;
+  border-bottom: 1px solid #161620;
+  cursor: grab;
+}
+
+.sf-header:active {
+  cursor: grabbing;
+}
+
+.sf-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.sf-brand-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+}
+
+.sf-brand-dot.sf-connecting {
+  background: #f59e0b;
+  animation: sf-blink 1s ease infinite;
+}
+
+.sf-brand-dot.sf-disconnected {
+  background: #ef4444;
+  animation: none;
+}
+
+@keyframes sf-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.sf-brand-name {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2e2e3a;
+}
+
+.sf-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sf-btn {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #282830;
+  border-radius: 4px;
+  transition: color 150ms, background 150ms;
+  font-size: 11px;
+  line-height: 1;
+  user-select: none;
+}
+
+.sf-btn:hover {
+  color: #555560;
+  background: rgba(255,255,255,0.04);
+}
+
+
+
+.sf-primary {
+  padding: 14px 12px 11px;
+  border-bottom: 1px solid #161620;
+}
+
+.sf-primary-eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2a2a36;
+  margin-bottom: 5px;
+}
+
+.sf-primary-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #e4e4ec;
+  margin-bottom: 8px;
+  transition: color 350ms ease;
+}
+
+.sf-primary-name.sf-placeholder {
+  color: #24242e;
+}
+
+.sf-primary-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sf-confidence-pill {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #363642;
+  font-variant-numeric: tabular-nums;
+}
+
+.sf-sentiment-badge {
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+
+.sf-sentiment-badge.positive  { background: rgba(34,197,94,0.1);  color: #22c55e; border-color: rgba(34,197,94,0.18); }
+.sf-sentiment-badge.negative  { background: rgba(239,68,68,0.1);  color: #ef4444; border-color: rgba(239,68,68,0.18); }
+.sf-sentiment-badge.neutral   { background: rgba(148,163,184,0.08); color: #64748b; border-color: rgba(148,163,184,0.14); }
+
+
+
+.sf-emotions {
+  padding: 11px 12px 10px;
+  border-bottom: 1px solid #161620;
+  display: flex;
+  flex-direction: column;
+  gap: 5.5px;
+}
+
+.sf-emotion-row {
+  display: grid;
+  grid-template-columns: 74px 1fr 32px;
+  align-items: center;
+  gap: 8px;
+}
+
+.sf-emotion-name {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #2c2c38;
+  letter-spacing: 0.01em;
+  transition: color 250ms;
+  white-space: nowrap;
+}
+
+.sf-emotion-name.sf-top { color: #b4b4c4; }
+
+.sf-bar-track {
+  height: 2px;
+  background: #161620;
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sf-bar-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0%;
+  border-radius: 1px;
+  transition: width 480ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.sf-emotion-pct {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #22222e;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  transition: color 250ms;
+  letter-spacing: 0.01em;
+}
+
+.sf-emotion-pct.sf-top { color: #555568; }
+
+
+
+.sf-metrics {
+  display: flex;
+  padding: 9px 12px;
+  gap: 0;
+  border-bottom: 1px solid #161620;
+}
+
+.sf-metric {
+  flex: 1;
+  border-right: 1px solid #161620;
+  padding-right: 12px;
+}
+
+.sf-metric:last-child {
+  border-right: none;
+  padding-right: 0;
+  padding-left: 12px;
+}
+
+.sf-metric:not(:first-child):not(:last-child) {
+  padding: 0 12px;
+}
+
+.sf-metric-label {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #222230;
+  margin-bottom: 2px;
+}
+
+.sf-metric-label.sf-estimated::before {
+  content: '~ ';
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+.sf-metric-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #38383e;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.sf-metric-value .sf-unit {
+  font-size: 9px;
+  font-weight: 500;
+  color: #22222e;
+  margin-left: 1px;
+}
+
+
+
+.sf-suggestions {
+  padding: 9px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-bottom: 1px solid #161620;
+}
+
+.sf-suggestion {
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: #383844;
+  padding-left: 8px;
+  border-left: 1.5px solid #20202a;
+}
+
+
+
+.sf-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+}
+
+.sf-status-text {
+  font-size: 9px;
+  color: #20202a;
+  letter-spacing: 0.02em;
+}
+
+.sf-latency-text {
+  font-size: 9px;
+  color: #20202a;
+  font-variant-numeric: tabular-nums;
+}
+
+
+
+.sf-bar-fill.sf-shimmer {
+  background: linear-gradient(90deg, #1c1c28 25%, #24242e 50%, #1c1c28 75%) !important;
+  background-size: 200% 100% !important;
+  animation: sf-shimmer 1.2s ease infinite;
+  width: 100% !important;
+}
+
+@keyframes sf-shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}

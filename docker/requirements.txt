@@ -1,0 +1,26 @@
+# SentiFlow 3.0 — Pinned dependencies
+# Install: pip install -r requirements.txt
+
+# Web framework
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+gunicorn==22.0.0
+
+# Data validation
+pydantic==2.7.1
+
+# Environment
+python-dotenv==1.0.1
+
+# ML — CPU-only torch to keep Docker image lean (~800MB vs ~2.5GB GPU)
+# For GPU: remove --index-url line and install torch normally
+torch==2.3.0 --index-url https://download.pytorch.org/whl/cpu
+transformers==4.41.0
+sentencepiece==0.2.0
+tokenizers==0.19.1
+
+# Rate limiting (Redis-backed in production)
+slowapi==0.1.9
+
+# Redis client (for distributed rate limiting with multi-worker Gunicorn)
+redis==5.0.4

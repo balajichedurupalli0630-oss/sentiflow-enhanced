@@ -1,0 +1,18 @@
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+gunicorn==22.0.0
+pydantic==2.7.1
+python-dotenv==1.0.1
+torch>=2.6.0,<2.12.0
+transformers>=4.56.0,<6.0.0
+sentencepiece==0.2.0
+redis==5.0.4
+slowapi==0.1.9
+
+# Fine-tuning + evaluation
+datasets>=4.7.0,<5.0.0
+peft>=0.17.0,<0.20.0
+accelerate>=1.11.0,<2.0.0
+scikit-learn>=1.7.0,<2.0.0
+numpy==1.26.4
+pytest==9.0.3

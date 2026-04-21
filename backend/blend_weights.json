@@ -1,0 +1,44 @@
+{
+  "description": "Per-emotion Hartmann blend weights. go_weight = 1 - hartmann_weight.",
+  "method": "grid",
+  "hartmann_model": "hartmann_finetuned",
+  "dataset_split": "test",
+  "n_samples": 3821,
+  "metrics": {
+    "fixed_macro_f1": 0.6571,
+    "learned_macro_f1": 0.661,
+    "improvement": 0.0039
+  },
+  "weights": {
+    "joy": 0.0,
+    "sadness": 0.0,
+    "anger": 0.0,
+    "fear": 0.0,
+    "surprise": 0.0,
+    "disgust": 0.0,
+    "trust": 0.0,
+    "anticipation": 0.0
+  },
+  "all_weights": {
+    "grid": {
+      "joy": 0.0,
+      "sadness": 0.0,
+      "anger": 0.0,
+      "fear": 0.0,
+      "surprise": 0.0,
+      "disgust": 0.0,
+      "trust": 0.0,
+      "anticipation": 0.0
+    },
+    "stacking": {
+      "joy": 0.5,
+      "sadness": 0.5,
+      "anger": 0.5,
+      "fear": 0.5,
+      "surprise": 0.5,
+      "disgust": 0.5,
+      "trust": 0.5,
+      "anticipation": 0.5
+    }
+  }
+}
