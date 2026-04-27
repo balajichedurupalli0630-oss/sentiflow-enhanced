@@ -291,7 +291,7 @@ def make_weighted_trainer(class_weights: torch.Tensor):
     cannot ignore them.
     """
     class WeightedTrainer(Trainer):
-        def compute_loss(self, model, inputs, return_outputs=False, **kwargs):
+        def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
             labels  = inputs.get("labels")
             outputs = model(**inputs)
             logits  = outputs.logits
@@ -299,6 +299,11 @@ def make_weighted_trainer(class_weights: torch.Tensor):
             loss    = F.cross_entropy(logits, labels, weight=weights,
                                       # FIX 5: label smoothing ────────────────
                                       label_smoothing=0.1)
+            
+            # For Transformers 4.46+ / 5.x, handle loss scaling with num_items_in_batch
+            if num_items_in_batch is not None:
+                loss /= num_items_in_batch
+                
             return (loss, outputs) if return_outputs else loss
 
     return WeightedTrainer
@@ -462,16 +467,24 @@ def train(
 
     WeightedTrainer = make_weighted_trainer(weights)
 
-    trainer = WeightedTrainer(
-        model=model,
-        args=args,
-        train_dataset=ds["train"],
-        eval_dataset=ds["validation"],
-        tokenizer=tokenizer,
-        data_collator=collator,
-        compute_metrics=compute_metrics,
-        callbacks=[EarlyStoppingCallback(early_stopping_patience=3)],  # FIX 6: was 2
-    )
+    trainer_kwargs = {
+        "model": model,
+        "args": args,
+        "train_dataset": ds["train"],
+        "eval_dataset": ds["validation"],
+        "data_collator": collator,
+        "compute_metrics": compute_metrics,
+        "callbacks": [EarlyStoppingCallback(early_stopping_patience=3)],
+    }
+
+    # FIX: Compatibility for Transformers v5+ (which renamed 'tokenizer' to 'processing_class')
+    trainer_sig = inspect.signature(Trainer.__init__)
+    if "processing_class" in trainer_sig.parameters:
+        trainer_kwargs["processing_class"] = tokenizer
+    else:
+        trainer_kwargs["tokenizer"] = tokenizer
+
+    trainer = WeightedTrainer(**trainer_kwargs)
 
     log.info("Starting training…")
     trainer.train()

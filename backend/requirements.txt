@@ -1,18 +1,22 @@
-fastapi==0.111.0
-uvicorn[standard]==0.29.0
-gunicorn==22.0.0
-pydantic==2.7.1
-python-dotenv==1.0.1
-torch>=2.6.0,<2.12.0
-transformers>=4.56.0,<6.0.0
-sentencepiece==0.2.0
+fastapi>=0.116.0,<1.0.0
+uvicorn[standard]>=0.30.0,<1.0.0
+gunicorn>=22.0.0,<24.0.0
+pydantic>=2.11.0,<3.0.0
+python-dotenv>=1.1.0,<2.0.0
+torch>=2.6.0
+transformers
 redis==5.0.4
 slowapi==0.1.9
 
 # Fine-tuning + evaluation
-datasets>=4.7.0,<5.0.0
-peft>=0.17.0,<0.20.0
-accelerate>=1.11.0,<2.0.0
-scikit-learn>=1.7.0,<2.0.0
-numpy==1.26.4
-pytest==9.0.3
+datasets>=2.19.0,<3.0.0
+peft
+accelerate
+scikit-learn
+numpy>=2.0.0, <3.0.0
+optimum
+sentencepiece>=0.2.0,<0.3.0
+tiktoken>=0.7.0
+tqdm>=4.66.0,<5.0.0
+pytest==8.3.2
+
