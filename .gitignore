@@ -45,6 +45,8 @@ lib/
 # Large files / Models
 backend/adapter*/checkpoint-*/
 backend/adapter*/adapter_model.safetensors
+backend/deberta_multilabel*/checkpoints/
+backend/deberta_multilabel*/checkpoint-*/
 *.bin
 *.pth
 *.pt
