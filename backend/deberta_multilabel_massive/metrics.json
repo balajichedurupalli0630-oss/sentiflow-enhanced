@@ -1,0 +1,155 @@
+{
+  "model_name": "microsoft/deberta-v3-base",
+  "output_model": "deberta_multilabel_massive/model",
+  "test_set_size": 5821,
+  "metrics": {
+    "macro_f1": 0.6338247706485649,
+    "micro_f1": 0.7081289153898408,
+    "weighted_f1": 0.713585533155326,
+    "samples_f1": 0.7178663459886617,
+    "subset_accuracy": 0.5830613296684418,
+    "primary_accuracy": 0.7416251503178148,
+    "hamming_loss": 0.08303985569489779
+  },
+  "per_class": {
+    "joy": {
+      "precision": 0.799404761904762,
+      "recall": 0.8290123456790124,
+      "f1-score": 0.813939393939394,
+      "support": 1620.0
+    },
+    "sadness": {
+      "precision": 0.7976608187134503,
+      "recall": 0.7365010799136069,
+      "f1-score": 0.7658618753509264,
+      "support": 926.0
+    },
+    "anger": {
+      "precision": 0.6878612716763006,
+      "recall": 0.7132867132867133,
+      "f1-score": 0.7003433055419324,
+      "support": 1001.0
+    },
+    "fear": {
+      "precision": 0.6616766467065869,
+      "recall": 0.6863354037267081,
+      "f1-score": 0.6737804878048781,
+      "support": 322.0
+    },
+    "surprise": {
+      "precision": 0.42586206896551726,
+      "recall": 0.5,
+      "f1-score": 0.45996275605214154,
+      "support": 494.0
+    },
+    "disgust": {
+      "precision": 0.22185430463576158,
+      "recall": 0.42138364779874216,
+      "f1-score": 0.29067245119305857,
+      "support": 159.0
+    },
+    "trust": {
+      "precision": 0.668169014084507,
+      "recall": 0.8334504567814477,
+      "f1-score": 0.7417135709818636,
+      "support": 1423.0
+    },
+    "anticipation": {
+      "precision": 0.6127320954907162,
+      "recall": 0.6363636363636364,
+      "f1-score": 0.6243243243243243,
+      "support": 363.0
+    },
+    "micro avg": {
+      "precision": 0.6758392162512606,
+      "recall": 0.7436588459099556,
+      "f1-score": 0.7081289153898408,
+      "support": 6308.0
+    },
+    "macro avg": {
+      "precision": 0.6094026227722003,
+      "recall": 0.6695416604437334,
+      "f1-score": 0.6338247706485649,
+      "support": 6308.0
+    },
+    "weighted avg": {
+      "precision": 0.690259289761145,
+      "recall": 0.7436588459099556,
+      "f1-score": 0.713585533155326,
+      "support": 6308.0
+    },
+    "samples avg": {
+      "precision": 0.7083834392716029,
+      "recall": 0.7608085666838459,
+      "f1-score": 0.7178663459886617,
+      "support": 6308.0
+    }
+  },
+  "calibration": {
+    "labels": [
+      "joy",
+      "sadness",
+      "anger",
+      "fear",
+      "surprise",
+      "disgust",
+      "trust",
+      "anticipation"
+    ],
+    "temperature": 0.7629082202911377,
+    "thresholds": {
+      "joy": 0.6100000143051147,
+      "sadness": 0.7400000095367432,
+      "anger": 0.5400000214576721,
+      "fear": 0.6000000238418579,
+      "surprise": 0.5099999904632568,
+      "disgust": 0.1599999964237213,
+      "trust": 0.3499999940395355,
+      "anticipation": 0.6399999856948853
+    },
+    "threshold_details": {
+      "joy": {
+        "threshold": 0.61,
+        "validation_f1": 0.8115273775216139,
+        "support": 1699
+      },
+      "sadness": {
+        "threshold": 0.74,
+        "validation_f1": 0.7774011299435029,
+        "support": 910
+      },
+      "anger": {
+        "threshold": 0.54,
+        "validation_f1": 0.6954389406571849,
+        "support": 992
+      },
+      "fear": {
+        "threshold": 0.6,
+        "validation_f1": 0.662379421221865,
+        "support": 317
+      },
+      "surprise": {
+        "threshold": 0.51,
+        "validation_f1": 0.46875,
+        "support": 479
+      },
+      "disgust": {
+        "threshold": 0.16,
+        "validation_f1": 0.22695035460992907,
+        "support": 130
+      },
+      "trust": {
+        "threshold": 0.35,
+        "validation_f1": 0.7450742649287663,
+        "support": 1492
+      },
+      "anticipation": {
+        "threshold": 0.64,
+        "validation_f1": 0.5948406676783005,
+        "support": 324
+      }
+    },
+    "calibrated_on": "validation",
+    "threshold_metric": "per_label_f1"
+  }
+}

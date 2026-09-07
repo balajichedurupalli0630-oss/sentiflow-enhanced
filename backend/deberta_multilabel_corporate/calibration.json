@@ -1,0 +1,67 @@
+{
+  "labels": [
+    "joy",
+    "sadness",
+    "anger",
+    "fear",
+    "surprise",
+    "disgust",
+    "trust",
+    "anticipation"
+  ],
+  "temperature": 0.7473208904266357,
+  "thresholds": {
+    "joy": 0.6000000238418579,
+    "sadness": 0.6600000262260437,
+    "anger": 0.5099999904632568,
+    "fear": 0.8799999952316284,
+    "surprise": 0.4699999988079071,
+    "disgust": 0.1599999964237213,
+    "trust": 0.5199999809265137,
+    "anticipation": 0.6399999856948853
+  },
+  "threshold_details": {
+    "joy": {
+      "threshold": 0.6,
+      "validation_f1": 0.8132947976878613,
+      "support": 1699
+    },
+    "sadness": {
+      "threshold": 0.66,
+      "validation_f1": 0.7671388101983003,
+      "support": 910
+    },
+    "anger": {
+      "threshold": 0.51,
+      "validation_f1": 0.6955693187232015,
+      "support": 992
+    },
+    "fear": {
+      "threshold": 0.88,
+      "validation_f1": 0.6753246753246753,
+      "support": 317
+    },
+    "surprise": {
+      "threshold": 0.47,
+      "validation_f1": 0.49039341262580055,
+      "support": 479
+    },
+    "disgust": {
+      "threshold": 0.16,
+      "validation_f1": 0.3148148148148148,
+      "support": 130
+    },
+    "trust": {
+      "threshold": 0.52,
+      "validation_f1": 0.7495042961004627,
+      "support": 1492
+    },
+    "anticipation": {
+      "threshold": 0.64,
+      "validation_f1": 0.5938864628820961,
+      "support": 324
+    }
+  },
+  "calibrated_on": "validation",
+  "threshold_metric": "per_label_f1"
+}

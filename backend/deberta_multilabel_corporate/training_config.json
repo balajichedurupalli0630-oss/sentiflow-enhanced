@@ -1,0 +1,21 @@
+{
+  "model_name": "microsoft/deberta-v3-base",
+  "output_dir": "./deberta_multilabel_corporate",
+  "max_length": 160,
+  "epochs": 6,
+  "batch": 2,
+  "grad_accum": 8,
+  "lr": 1e-05,
+  "weight_decay": 0.01,
+  "warmup_ratio": 0.1,
+  "seed": 42,
+  "use_gpu": false,
+  "use_lora": true,
+  "lora_r": 64,
+  "lora_alpha": 128,
+  "lora_dropout": 0.1,
+  "label_smoothing": 0.05,
+  "pos_weight_cap": 2.0,
+  "max_grad_norm": 1.0,
+  "limit": null
+}

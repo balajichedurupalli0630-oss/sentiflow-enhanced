@@ -419,14 +419,16 @@
     if (!header || !root) return;
 
     // Restore previously saved position
-    chrome.storage.local.get(['sfPanelLeft', 'sfPanelTop'], (pos) => {
-      if (pos.sfPanelLeft !== undefined && pos.sfPanelTop !== undefined) {
-        root.style.setProperty('left',   pos.sfPanelLeft + 'px', 'important');
-        root.style.setProperty('top',    pos.sfPanelTop  + 'px', 'important');
-        root.style.setProperty('right',  'auto', 'important');
-        root.style.setProperty('bottom', 'auto', 'important');
-      }
-    });
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get(['sfPanelLeft', 'sfPanelTop'], (pos) => {
+        if (pos.sfPanelLeft !== undefined && pos.sfPanelTop !== undefined) {
+          root.style.setProperty('left',   pos.sfPanelLeft + 'px', 'important');
+          root.style.setProperty('top',    pos.sfPanelTop  + 'px', 'important');
+          root.style.setProperty('right',  'auto', 'important');
+          root.style.setProperty('bottom', 'auto', 'important');
+        }
+      });
+    }
 
     let dragging = false;
     let startX, startY, initX, initY;
@@ -456,7 +458,9 @@
       dragging = false;
       // Persist the final position so it survives page navigation
       const rect = root.getBoundingClientRect();
-      chrome.storage.local.set({ sfPanelLeft: Math.round(rect.left), sfPanelTop: Math.round(rect.top) });
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+        chrome.storage.local.set({ sfPanelLeft: Math.round(rect.left), sfPanelTop: Math.round(rect.top) });
+      }
     });
   }
 

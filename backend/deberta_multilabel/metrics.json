@@ -1,0 +1,155 @@
+{
+  "model_name": "microsoft/deberta-v3-base",
+  "output_model": "deberta_multilabel/model",
+  "test_set_size": 3821,
+  "metrics": {
+    "macro_f1": 0.6158293389989672,
+    "micro_f1": 0.6993419559791241,
+    "weighted_f1": 0.7006845938125648,
+    "samples_f1": 0.7070574893134433,
+    "subset_accuracy": 0.5605862339701648,
+    "primary_accuracy": 0.7403820989269825,
+    "hamming_loss": 0.08669196545406961
+  },
+  "per_class": {
+    "joy": {
+      "precision": 0.7796610169491526,
+      "recall": 0.7956756756756757,
+      "f1-score": 0.7875869448903157,
+      "support": 925.0
+    },
+    "sadness": {
+      "precision": 0.5844875346260388,
+      "recall": 0.6115942028985507,
+      "f1-score": 0.5977337110481586,
+      "support": 345.0
+    },
+    "anger": {
+      "precision": 0.6406820950060901,
+      "recall": 0.7245179063360881,
+      "f1-score": 0.6800258564964448,
+      "support": 726.0
+    },
+    "fear": {
+      "precision": 0.5625,
+      "recall": 0.45918367346938777,
+      "f1-score": 0.5056179775280899,
+      "support": 98.0
+    },
+    "surprise": {
+      "precision": 0.4699248120300752,
+      "recall": 0.5841121495327103,
+      "f1-score": 0.5208333333333334,
+      "support": 428.0
+    },
+    "disgust": {
+      "precision": 0.3724137931034483,
+      "recall": 0.33962264150943394,
+      "f1-score": 0.35526315789473684,
+      "support": 159.0
+    },
+    "trust": {
+      "precision": 0.8026835043409629,
+      "recall": 0.8045886075949367,
+      "f1-score": 0.8036349269063611,
+      "support": 1264.0
+    },
+    "anticipation": {
+      "precision": 0.6825842696629213,
+      "recall": 0.6694214876033058,
+      "f1-score": 0.6759388038942976,
+      "support": 363.0
+    },
+    "micro avg": {
+      "precision": 0.683976919662672,
+      "recall": 0.7154131847725163,
+      "f1-score": 0.6993419559791241,
+      "support": 4308.0
+    },
+    "macro avg": {
+      "precision": 0.6118671282148362,
+      "recall": 0.6235895430775111,
+      "f1-score": 0.6158293389989672,
+      "support": 4308.0
+    },
+    "weighted avg": {
+      "precision": 0.6884416186456149,
+      "recall": 0.7154131847725163,
+      "f1-score": 0.7006845938125648,
+      "support": 4308.0
+    },
+    "samples avg": {
+      "precision": 0.7124661955857978,
+      "recall": 0.7384628805722759,
+      "f1-score": 0.7070574893134433,
+      "support": 4308.0
+    }
+  },
+  "calibration": {
+    "labels": [
+      "joy",
+      "sadness",
+      "anger",
+      "fear",
+      "surprise",
+      "disgust",
+      "trust",
+      "anticipation"
+    ],
+    "temperature": 0.7818263173103333,
+    "thresholds": {
+      "joy": 0.6600000262260437,
+      "sadness": 0.5400000214576721,
+      "anger": 0.5199999809265137,
+      "fear": 0.3700000047683716,
+      "surprise": 0.4399999976158142,
+      "disgust": 0.3100000023841858,
+      "trust": 0.6399999856948853,
+      "anticipation": 0.6399999856948853
+    },
+    "threshold_details": {
+      "joy": {
+        "threshold": 0.66,
+        "validation_f1": 0.784392196098049,
+        "support": 995
+      },
+      "sadness": {
+        "threshold": 0.54,
+        "validation_f1": 0.6353591160220995,
+        "support": 360
+      },
+      "anger": {
+        "threshold": 0.52,
+        "validation_f1": 0.6884389288047028,
+        "support": 717
+      },
+      "fear": {
+        "threshold": 0.37,
+        "validation_f1": 0.49710982658959535,
+        "support": 105
+      },
+      "surprise": {
+        "threshold": 0.44,
+        "validation_f1": 0.5369127516778524,
+        "support": 398
+      },
+      "disgust": {
+        "threshold": 0.31,
+        "validation_f1": 0.3657587548638132,
+        "support": 130
+      },
+      "trust": {
+        "threshold": 0.64,
+        "validation_f1": 0.794287919722115,
+        "support": 1314
+      },
+      "anticipation": {
+        "threshold": 0.64,
+        "validation_f1": 0.6656534954407295,
+        "support": 324
+      }
+    },
+    "calibrated_on": "validation",
+    "threshold_metric": "per_label_f1"
+  }
+}
